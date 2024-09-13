@@ -19,13 +19,13 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			deleteAllStudents(studentDAO);
+			createStudent(studentDAO);
 		};
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
 		System.out.println("Creating a student...");
-		Student student = new Student("Sejida", "Masetic", "zijad@masetic.com");
+		Student student = new Student("Sead", "Masetic", "zijad@masetic.com");
 
 		System.out.println("Saving user inside the DB...");
 		studentDAO.save(student);
