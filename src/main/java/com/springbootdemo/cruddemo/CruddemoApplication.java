@@ -19,7 +19,7 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			readStudents(studentDAO);
+			readStudentByLastName(studentDAO, "Masetic");
 		};
 	}
 
@@ -48,6 +48,16 @@ public class CruddemoApplication {
 		List<Student> students = studentDAO.findAll();
 
 		for(Student student: students) {
+			System.out.println(student);
+		}
+	}
+
+	private void readStudentByLastName(StudentDAO studentDAO, String lastName) {
+		System.out.println("Fetching users by the last name: " + lastName);
+
+		List<Student> students = studentDAO.findByLastName(lastName);
+
+		for(Student student : students) {
 			System.out.println(student);
 		}
 	}
