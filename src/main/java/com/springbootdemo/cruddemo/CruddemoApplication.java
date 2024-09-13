@@ -19,13 +19,13 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			deleteStudent(studentDAO, 2);
+			deleteAllStudents(studentDAO);
 		};
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
 		System.out.println("Creating a student...");
-		Student student = new Student("Zijad", "Masetic", "zijad@masetic.com");
+		Student student = new Student("Sejida", "Masetic", "zijad@masetic.com");
 
 		System.out.println("Saving user inside the DB...");
 		studentDAO.save(student);
@@ -83,5 +83,13 @@ public class CruddemoApplication {
 		studentDAO.delete(id);
 
 		System.out.println("Deleted student");
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students...");
+
+		int rowsAffected = studentDAO.deleteAll();
+
+		System.out.println("Deleted " + rowsAffected + " rows from the table!");
 	}
 }
